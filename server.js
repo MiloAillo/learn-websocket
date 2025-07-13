@@ -1,7 +1,7 @@
-import express from 'express'
-const app = express()
+const io = require("socket.io")(3000)
 
-app.listen(3000, () => {
-    console.log("server activated")
+io.on('connection', socket => {
+    console.log(`${socket.id} is sucesfully connected!`)
+    io.emit('notification', `${socket.id} is sucesfully connected!`)
+    socket.emit('greet', `welcome!`)
 })
-

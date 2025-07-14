@@ -7,6 +7,18 @@
 </head>
 <body>
     <p id="id"></p>
+    <div id="display" style="
+    border: solid 1px black;
+    width: 300px;
+    height: 500px;
+    overflow-y: scroll;
+    "></div>
+    <br>
+    <input type="text" name="text" id="text" placeholder="message">
+    <button onclick="message()">send</button>
+    <br>
+    <input type="text" name="broadcast" id="broadcast" placeholder="broadcast">
+    <button onclick="broadcast()">Broadcast</button>
     <script src="client.js" type="module"></script>
 </body>
 </html>

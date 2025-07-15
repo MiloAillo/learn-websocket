@@ -44,3 +44,8 @@ window.broadcast = () => {
         display.innerHTML += `<p>Broadcasted!</p>`
     }
 }
+
+window.join = () => {
+    console.log(room.value)
+    socket.emit('join-room', room.value)
+}

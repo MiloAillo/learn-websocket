@@ -23,4 +23,9 @@ io.on('connection', socket => {
         console.log(message)
         socket.broadcast.emit('broadcast', message)
     })
+
+    socket.on('join-room', room => {
+        console.log(room)
+        socket.join(room)
+    })
 })

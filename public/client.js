@@ -4,6 +4,7 @@ const socket = io('http://localhost:3000')
 const text = document.getElementById('text')
 const display = document.getElementById('display')
 const broadcast = document.getElementById('broadcast')
+const room = document.getElementById('room')
 
 // when connection established
 socket.on('connect', () => {
@@ -18,16 +19,20 @@ socket.on('broadcast', message => {
 })
 
 // 'message' event listener 
-socket.on('message', message => {
+socket.on('message', (message, socket) => {
+    if (!socket) {
     display.innerHTML += `<p>Server: ${message}</p>`
+    } else {
+        display.innerHTML += `<p>${socket}: ${message}</p>`
+    }
 })
 
 // sending text message to serverr
 window.message = () => {
     if (!text.value) return
     else {
-        display.innerHTML += `<p>You: ${text.value}</p>`
-        socket.emit('message', text.value)
+        display.innerHTML += `<p>[${room.value ? 'to Private' : 'to Server'}] You: ${text.value}</p>`
+        socket.emit('message', text.value, room.value)
     }
 }
 

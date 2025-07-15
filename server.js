@@ -8,10 +8,15 @@ io.on('connection', socket => {
     answer = ['hiaa!!', 'Heyooo!', 'Haiiii!!!!']
     console.log(`${socket.id} is sucesfully connected!`)
 
-    socket.on('message', message => {
+    socket.on('message', (message, room) => {
         const random =  Math.floor(Math.random() * 3)
-        console.log(message)
+        if (!room) {
+        console.log('to Server')
         socket.emit('message', answer[random])
+        } else {
+            console.log('to Private')
+            socket.to(room).emit('message', message, socket.id)
+        }
     })
 
     socket.on('broadcast', message => {

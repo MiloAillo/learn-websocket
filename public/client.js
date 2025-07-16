@@ -6,7 +6,7 @@ const display = document.getElementById('display')
 const broadcast = document.getElementById('broadcast')
 const room = document.getElementById('room')
 
-// when connection established
+// connection established
 socket.on('connect', () => {
     console.log(`this is your user id: ${socket.id}`)
     document.getElementById('id').innerHTML = socket.id

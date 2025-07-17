@@ -10,7 +10,12 @@ const room = document.getElementById('room')
 socket.on('connect', () => {
     console.log(`this is your user id: ${socket.id}`)
     document.getElementById('id').innerHTML = socket.id
-    display.innerHTML += `<p>Youre connected with id: ${socket.id}<p>`
+    display.innerHTML = `<p>Youre connected with id: ${socket.id}<p>`
+})
+
+socket.on("disconnect", () => {
+    document.getElementById('id').innerHTML = "Offline"
+    display.innerHTML = `<p>You're Offline.</p>`
 })
 
 // 'broadcast' event listener
@@ -48,4 +53,5 @@ window.broadcast = () => {
 window.join = () => {
     console.log(room.value)
     socket.emit('join-room', room.value)
+    display.innerHTML += `<p>You Joined Room: ${room.value}</p>`
 }
